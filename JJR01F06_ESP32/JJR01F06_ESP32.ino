@@ -48,8 +48,8 @@ WebSocketsServer webSocket = WebSocketsServer(8001);
 //  - phA, phB, phC - motor A,B,C phase pwm pins
 //  - pp            - pole pair number
 //  - enable pin    - (optional input)
-BLDCMotor motor = BLDCMotor(25, 26, 27, 7, 1);
-BLDCMotor motorB = BLDCMotor(16, 17, 18, 7, 1);
+BLDCMotor motor = BLDCMotor(25, 26, 27, 7);
+BLDCMotor motorB = BLDCMotor(16, 17, 18, 7);
 //  Encoder(int encA, int encB , int cpr, int index)
 //  - encA, encB    - encoder A and B pins
 //  - ppr           - impulses per rotation  (cpr=ppr*4)
@@ -339,7 +339,7 @@ void inverseKinematics(int posX, int posY){
 
 //Function that manages each button input
 void handleData(){
-  if (coordenadas[0]!=posX_joy || coordenadas[1]!=posY_joy)
+  if (coordenadas[0]!= posX_joy || coordenadas[1]!=posY_joy)
   {
     Serial.print("X:");
     Serial.print(coordenadas[0]);
@@ -387,8 +387,8 @@ void handleData(){
     motor.P_angle.P = kp;
     motorB.P_angle.P = kp;
     machineState = 0;
-    memset(posA, 0.1, sizeof(posA));
-    memset(posB, 0.35, sizeof(posB));
+    memset(posA, 0, sizeof(posA));
+    memset(posB, 0, sizeof(posB));
   }
   else if(coordenadas[6]==1 && demoC!=coordenadas[6]){
     Serial.println("Circle DEMO");
@@ -397,7 +397,6 @@ void handleData(){
     sp = 0;
     motor.P_angle.P = 25;
     motorB.P_angle.P = 25;
-    
     machineState = 6;
   }
   else if(coordenadas[7]==1 && demoM!=coordenadas[7]){
