@@ -1,6 +1,7 @@
 //Include libraries necessary for the project
-#include <SimpleFOC.h>     //Library to control the BLDC Motors: https://github.com/askuric/Arduino-FOC
-                           //Needs specific modifications to run on the ESP32
+#include <SimpleFOCSVM.h>     //Library to control the BLDC Motors: https://github.com/askuric/Arduino-FOC
+                              //Needs specific modifications to run on the ESP32
+                              //The Version of the library that will work for sure with this project is on this GitHub repository.
 #include "driver/mcpwm.h"
 #include "soc/mcpwm_reg.h"
 #include "soc/mcpwm_struct.h"
@@ -77,7 +78,7 @@ float kp = 8.0;      //Proportional gain for the P position controller
 float tf = 0.000;    //Low-pass filter 
 float ramp = 100000;     //Limit how many volts per second the controller can increment
 float sourceVoltage = 5.125;    //Voltage of the source
-float limitV = 4.85/2;      //Limit the voltage, it is devided by two because of the way FOC works.
+float limitV = 4.85;      //Limit the voltage, it is devided by two because of the way FOC works.
 
 //Five Bar Parrallel Robot constants
 const int l0 = 63;
